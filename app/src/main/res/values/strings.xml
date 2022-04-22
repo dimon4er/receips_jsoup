@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Parser</string>
+    <string name="receipt">Receipt</string>
+    <string name="description">Description</string>
+</resources>
