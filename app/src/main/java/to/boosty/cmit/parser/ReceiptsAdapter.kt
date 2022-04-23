@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import to.boosty.cmit.parser.lists.Receipts
 
 class ReceiptsAdapter: RecyclerView.Adapter<ReceiptsAdapter.MyViewClass> {
@@ -31,8 +33,12 @@ class ReceiptsAdapter: RecyclerView.Adapter<ReceiptsAdapter.MyViewClass> {
     }
 
     override fun onBindViewHolder(holder: MyViewClass, position: Int) {
-        holder.name.text = receipts[position].title
-        holder.date.text = receipts[position].description
+        holder.title.text = receipts[position].title
+        holder.desc.text = receipts[position].description
+        holder.adInfo.text = receipts[position].additionalInfo
+        Picasso.get()
+            .load(receipts[position].linkImage)
+            .into(holder.recImg)
 
         holder.itemView.setOnClickListener {
             Toast.makeText(context, position, Toast.LENGTH_LONG).show()
@@ -44,11 +50,17 @@ class ReceiptsAdapter: RecyclerView.Adapter<ReceiptsAdapter.MyViewClass> {
     }
 
     class MyViewClass: RecyclerView.ViewHolder {
-        var name: TextView
-        var date: TextView
+        var title: TextView
+        var desc: TextView
+        var adInfo: TextView
+        var recImg: ImageView
+
+
         constructor(itemView: View) : super(itemView) {
-            this.name = itemView.findViewById(R.id.tvTitle)
-            this.date = itemView.findViewById(R.id.tvName)
+            this.title = itemView.findViewById(R.id.tvTitle)
+            this.desc = itemView.findViewById(R.id.tvDesc)
+            this.adInfo = itemView.findViewById(R.id.tvAInfo)
+            this.recImg = itemView.findViewById(R.id.ivReceipt)
         }
     }
 } 

@@ -25,16 +25,17 @@ class GetData {
                 .eq(i)
                 .text()
 
-            /*val linkImage = element.select("article[class = card]")
+            val linkImage = element.select("article[class = card]")
+                    .select("picture[class = card__picture]")
                     .select("img")
                     .eq(i)
-                    .attr("src")*/
+                    .attr("src")
 
-                val addInfo = element.select("div[class = person__name]")
+            val addInfo = element.select("div[class = person__name]")
                     .eq(i)
                     .text()
 
-            listReceipts.add(Receipts(title, desc, addInfo))//, linkImage, addInfo))
+            listReceipts.add(Receipts(title, desc, addInfo, linkImage))//, linkImage, addInfo))
         }
         return listReceipts
     }
